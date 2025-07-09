@@ -26,6 +26,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/products', [ProductController::class, 'index']);
     Route::post('/cart', [CartController::class, 'addToCart']);
+    Route::get('/cart', [CartController::class, 'viewCart']);
     Route::post('/checkout', [OrderController::class, 'checkout']);
     Route::get('/suggestions/{category}', [SuggestionController::class, 'getSuggestions']);
     Route::post('/products', [ProductController::class, 'store']);

@@ -8,23 +8,39 @@ use App\Models\Cart;
 
 class OrderController extends Controller
 {
-    public function checkout()
-    {
-        $userId = auth()->id();
-        $cartItems = Cart::where('user_id', $userId)->get();
+public function checkout()
+{
+    $userId = auth()->id();
+    $cartItems = Cart::where('user_id', $userId)->with('product')->get();
 
-        if ($cartItems->isEmpty()) {
-            return response()->json(['message' => 'Cart is empty'], 400);
-        }
-
-        $order = Order::create([
-            'user_id' => $userId,
-            'total' => $cartItems->sum(fn($item) => $item->product->price * $item->quantity),
-        ]);
-
-        //  attach order items and clear cart
-        Cart::where('user_id', $userId)->delete();
-
-        return response()->json(['message' => 'Order placed', 'order' => $order]);
+    if ($cartItems->isEmpty()) {
+        return response()->json(['message' => 'Cart is empty'], 400);
     }
+
+    $items = $cartItems->map(function ($item) {
+        return [
+            'product_id' => $item->product_id,
+            'name' => $item->product->name,
+            'price' => $item->product->price,
+            'quantity' => $item->quantity,
+            'subtotal' => $item->product->price * $item->quantity,
+        ];
+    });
+
+    $totalPrice = $items->sum('subtotal');
+
+    $order = Order::create([
+        'user_id' => $userId,
+        'total_price' => $totalPrice,
+        'items' => $items,
+    ]);
+
+    Cart::where('user_id', $userId)->delete();
+
+    return response()->json([
+        'message' => 'Order placed successfully.',
+        'order' => $order,
+    ]);
+}
+
 }
