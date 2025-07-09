@@ -2,13 +2,13 @@
 
 This document provides a clear, easy-to-understand explanation of how the AI-Powered Shopping Companion works. It is written for both technical and non-technical readers and includes information about how the system operates, what it does, and how to use it.
 
----
+
 
 ## Overview
 
 The AI-Powered Shopping Companion is a digital assistant designed to help users browse, select, and purchase products like snacks and drinks. It uses a backend server built with Laravel (PHP framework) and a mobile app frontend built with Flutter (cross-platform framework).
 
----
+
 
 ## 1. Functional Summary
 
@@ -18,7 +18,7 @@ The AI-Powered Shopping Companion is a digital assistant designed to help users 
 * **Cart Management**: Users can add items to their cart.
 * **Checkout**: Users can finalize their shopping and place an order.
 
----
+
 
 ## 2. System Components
 
@@ -42,7 +42,7 @@ The AI-Powered Shopping Companion is a digital assistant designed to help users 
   * Cart
   * Suggestions Widget
 
----
+
 
 ## 3. Main Processes
 
@@ -66,7 +66,7 @@ The AI-Powered Shopping Companion is a digital assistant designed to help users 
 * When ready, they proceed to checkout.
 * The order is saved, and the cart is cleared.
 
----
+
 
 ## 4. API Summary (For Integration & Testing)
 
@@ -126,7 +126,7 @@ These are the endpoints used by the mobile app to communicate with the backend. 
   * Endpoint: `GET /api/suggestions/{category}`
   * Example: `/api/suggestions/Snacks`
 
----
+
 
 ## 5. Who is This For?
 
@@ -136,7 +136,7 @@ This system is ideal for:
 * Developers seeking a base project for learning Laravel + Flutter integration.
 * Product teams creating AI-based e-commerce apps.
 
----
+
 
 ## 6. Glossary (Non-Technical)
 
@@ -146,7 +146,3 @@ This system is ideal for:
 * **Checkout**: The final step where users confirm and pay for their order.
 * **API**: A way for different software (like the app and server) to talk to each other.
 * **Token**: A digital key that keeps users logged in securely.
-
----
-
-If you need a visual workflow diagram or user journey map, let me know!
